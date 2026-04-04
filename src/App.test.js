@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders the dark landing page', () => {
+test('renders the WriteUp blog hero', () => {
   render(<App />);
-  expect(screen.getByText(/shape a focused, cinematic page/i)).toBeInTheDocument();
+  expect(screen.getByText(/notes, experiments, and engineering write-ups/i)).toBeInTheDocument();
 });

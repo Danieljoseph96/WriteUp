@@ -12,10 +12,11 @@ function App() {
     <div className="app-shell">
       <div className="app-shell__glow app-shell__glow--one" />
       <div className="app-shell__glow app-shell__glow--two" />
-      <Navbar /> 
       <main className="app-shell__content">
-        <Home />
+         <Navbar />
         <Searchbar />
+       
+        <Home />
         <About />
       </main>
     </div>

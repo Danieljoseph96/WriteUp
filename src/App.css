@@ -55,7 +55,9 @@ body {
   z-index: 1;
   width: min(1120px, calc(100% - 2rem));
   margin: 0 auto;
-  padding: 6.5rem 0 4rem;
+  padding: 2rem 0 4rem;
+  display: grid;
+  gap: 1.5rem;
 }
 
 .page-section {
@@ -65,7 +67,7 @@ body {
 @media (max-width: 768px) {
   .app-shell__content {
     width: min(100% - 1rem, 1120px);
-    padding-top: 5.5rem;
+    padding-top: 1.25rem;
   }
 }
 /* Custom styles for the SENTINEL AI application */
