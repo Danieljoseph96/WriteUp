@@ -2,7 +2,7 @@
   "name": "writeup",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://aletheiastack.github.io/writeup",
+  "homepage": "https://Danieljoseph96.github.io/writeup",
   "dependencies": {
     "@radix-ui/react-icons": "^1.3.2",
     "@testing-library/dom": "^10.4.1",
