@@ -68,11 +68,18 @@
 	color: var(--muted);
 	text-decoration: none;
 	font-size: 0.95rem;
-	transition: color 160ms ease;
+	transition: color 160ms ease, background-color 160ms ease;
+	padding: 0.35rem 0.6rem;
+	border-radius: 999px;
 }
 
 .navbar__link:hover {
 	color: var(--accent);
+}
+
+.navbar__link--active {
+	color: var(--text);
+	background: rgba(47, 125, 125, 0.12);
 }
 
 .navbar__cta {
@@ -84,6 +91,7 @@
 	font-family: 'Space Grotesk', sans-serif;
 	font-weight: 700;
 	box-shadow: 0 12px 28px rgba(47, 125, 125, 0.18);
+	text-decoration: none;
 }
 
 @media (max-width: 800px) {

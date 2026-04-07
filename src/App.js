@@ -20,29 +20,50 @@ const writeupFileMap = markdownContext.keys().reduce((accumulator, key) => {
   return accumulator;
 }, {});
 
+function normalizePath(pathValue) {
+  return (pathValue || '').replace(/\\/g, '/').trim();
+}
+
+function resolveWriteupFileUrl(filePath) {
+  const normalized = normalizePath(filePath);
+
+  if (!normalized) {
+    return undefined;
+  }
+
+  const withDotSlash = normalized.startsWith('./') ? normalized : `./${normalized.replace(/^\//, '')}`;
+  const withoutDotSlash = withDotSlash.replace(/^\.\//, '');
+  const fileNameOnly = withoutDotSlash.split('/').pop();
+  const dbRelative = fileNameOnly ? `./Db/${fileNameOnly}` : '';
+
+  return (
+    writeupFileMap[normalized] ||
+    writeupFileMap[withDotSlash] ||
+    writeupFileMap[`./${withoutDotSlash}`] ||
+    writeupFileMap[dbRelative] ||
+    undefined
+  );
+}
+
 function App() {
   const writeups = useMemo(() => {
     const items = Array.isArray(writeupsDb?.writeups) ? writeupsDb.writeups : [];
 
-    return items
-      .map((item) => ({
-        ...item,
-        fileUrl: writeupFileMap[item.filePath],
-      }))
-      .filter((item) => item.fileUrl);
+    return items.map((item) => ({
+      ...item,
+      filePath: normalizePath(item.filePath),
+      fileUrl: resolveWriteupFileUrl(item.filePath),
+    }));
   }, []);
 
-  const defaultWriteupId = writeups.length > 0 ? writeups[writeups.length - 1].id : null;
-  const [selectedWriteupId, setSelectedWriteupId] = useState(defaultWriteupId);
+  const [selectedWriteupId, setSelectedWriteupId] = useState(null);
 
   const selectedWriteup = useMemo(() => {
-    const fallback = writeups.length > 0 ? writeups[writeups.length - 1] : null;
-
     if (selectedWriteupId == null) {
-      return fallback;
+      return null;
     }
 
-    return writeups.find((item) => item.id === selectedWriteupId) || fallback;
+    return writeups.find((item) => item.id === selectedWriteupId) || null;
   }, [selectedWriteupId, writeups]);
 
   return (
@@ -57,7 +78,16 @@ function App() {
             setSelectedWriteupId(id);
           }}
         />
-        <Home writeup={selectedWriteup} />
+        <Home
+          writeup={selectedWriteup}
+          writeups={writeups}
+          onSelectWriteup={(id) => {
+            setSelectedWriteupId(id);
+          }}
+          onClearSelection={() => {
+            setSelectedWriteupId(null);
+          }}
+        />
         <About />
       </main>
     </div>

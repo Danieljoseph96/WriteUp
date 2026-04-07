@@ -52,6 +52,63 @@
 	line-height: 1.6;
 }
 
+.home-section__title-list-wrap {
+	margin-top: 0.8rem;
+}
+
+.home-section__title-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	gap: 0.6rem;
+}
+
+.home-section__title-item {
+	margin: 0;
+}
+
+.home-section__title-button {
+	width: 100%;
+	text-align: left;
+	padding: 0.75rem 0.9rem;
+	border-radius: 12px;
+	border: 1px solid rgba(31, 37, 48, 0.1);
+	background: rgba(255, 255, 255, 0.78);
+	color: var(--text);
+	font-family: 'Space Grotesk', sans-serif;
+	cursor: pointer;
+}
+
+.home-section__title-button:hover {
+	border-color: rgba(47, 125, 125, 0.36);
+	background: rgba(47, 125, 125, 0.08);
+}
+
+.home-section__back-button {
+	margin-top: 0.7rem;
+	border: 1px solid rgba(31, 37, 48, 0.14);
+	border-radius: 10px;
+	padding: 0.45rem 0.7rem;
+	background: rgba(255, 255, 255, 0.82);
+	color: var(--text);
+	font-size: 0.88rem;
+	cursor: pointer;
+}
+
+.home-section__writeup-entry + .home-section__writeup-entry {
+	margin-top: 1.4rem;
+	padding-top: 1.2rem;
+	border-top: 1px solid rgba(31, 37, 48, 0.08);
+}
+
+.home-section__writeup-subtitle {
+	margin: 0 0 0.55rem;
+	font-family: 'Space Grotesk', sans-serif;
+	font-size: 1.1rem;
+	color: var(--text);
+}
+
 .home-section__writeups-markdown h1,
 .home-section__writeups-markdown h2,
 .home-section__writeups-markdown h3,

@@ -29,7 +29,7 @@ export default function Seachbar({ writeups = [], onSelectWriteup }) {
       return [];
     }
 
-    return writeups.filter((entry) => entry.title.toLowerCase().includes(normalized));
+    return writeups.filter((entry) => (entry.title || '').toLowerCase().includes(normalized));
   }, [query, writeups]);
 
   const canSearch = query.trim().length > 0;
@@ -103,12 +103,15 @@ export default function Seachbar({ writeups = [], onSelectWriteup }) {
                       <button
                         type="button"
                         className="searchbar-section__result-button"
+                        disabled={!entry.fileUrl}
                         onClick={() => {
                           handleSelect(entry.id);
                         }}
                       >
                         <span className="searchbar-section__result-title">{entry.title}</span>
-                        <span className="searchbar-section__result-heading">Click to open full write-up</span>
+                        <span className="searchbar-section__result-heading">
+                          {entry.fileUrl ? 'Click to open full write-up' : 'File is missing for this entry'}
+                        </span>
                       </button>
                     </li>
                   ))}

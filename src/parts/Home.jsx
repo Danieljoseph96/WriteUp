@@ -44,13 +44,20 @@ function resolveLocalAssetUrl(value) {
   return value;
 }
 
-export default function Home({ writeup }) {
+export default function Home({ writeup, writeups = [], onSelectWriteup, onClearSelection }) {
   const [markdown, setMarkdown] = useState('');
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState('');
 
   useEffect(() => {
     if (!writeup?.fileUrl) {
+      setMarkdown('');
+      setLoading(false);
+      setLoadError('');
+      return undefined;
+    }
+
+    if (!Array.isArray(writeups) || writeups.length === 0) {
       setMarkdown('');
       setLoadError('No write-up found in JSON index.');
       setLoading(false);
@@ -71,12 +78,14 @@ export default function Home({ writeup }) {
         }
 
         const text = await response.text();
+
         if (isMounted) {
           setMarkdown(text);
           setLoadError('');
         }
       } catch (error) {
         if (isMounted) {
+          setMarkdown('');
           setLoadError(error instanceof Error ? error.message : 'Failed to load write-up.');
         }
       } finally {
@@ -91,16 +100,42 @@ export default function Home({ writeup }) {
     return () => {
       isMounted = false;
     };
-  }, [writeup]);
+  }, [writeup, writeups]);
 
   return (
     <section className="home-section" id="home">
       <div className="home-section__copy">
         <div className="home-section__writeups">
-          <h3 className="home-section__writeups-title">{writeup?.title || 'WriteUp'}</h3>
-          {loading ? <p className="home-section__writeups-description">Loading write-up...</p> : null}
+          <h3 className="home-section__writeups-title">{writeup?.title || 'WriteUp Titles'}</h3>
+
+          {!writeup ? (
+            <div className="home-section__title-list-wrap">
+              {writeups.length === 0 ? <p className="home-section__writeups-description">No write-up title found.</p> : null}
+              {writeups.length > 0 ? (
+                <ul className="home-section__title-list" aria-label="Write-up titles">
+                  {writeups.map((entry) => (
+                    <li key={entry.id} className="home-section__title-item">
+                      <button
+                        type="button"
+                        className="home-section__title-button"
+                        onClick={() => {
+                          onSelectWriteup?.(entry.id);
+                        }}
+                      >
+                        {entry.title}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+            </div>
+          ) : null}
+
+          {writeup ? <button className="home-section__back-button" type="button" onClick={onClearSelection}>Back to all titles</button> : null}
+
+          {writeup && loading ? <p className="home-section__writeups-description">Loading write-up...</p> : null}
           {!loading && loadError ? <p className="home-section__writeups-description">{loadError}</p> : null}
-          {!loading && !loadError ? (
+          {writeup && !loading && !loadError ? (
             <div className="home-section__writeups-markdown">
               <ReactMarkdown
                 skipHtml={false}
