@@ -1,12 +1,14 @@
 {
-
-  "writeups": [
-    {
-      "where": "tryhackme.com",
-      "title": "TryHackMe: A Beginner's Guide to Cybersecurity",
-      "description": "A practical checklist for safer deployments: CI guards, test strategy, and smoke test patterns.",
-      "image": "/logo512.png",
-      "imageAlt": "TryHackMe writeup preview"
-    }
-  ]
+	"writeups": [
+		{
+			"id": 1,
+			"title": "Database",
+			"filePath": "./Db/Db.md"
+		},
+		{
+			"id": 2,
+			"title": "TryHackMe-SOC",
+			"filePath": "./Db/TryHackMe-SOC.md"
+		}
+	]
 }

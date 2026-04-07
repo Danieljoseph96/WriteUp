@@ -3,10 +3,7 @@ html {
 }
 
 body {
-  background:
-    radial-gradient(circle at top, rgba(101, 178, 255, 0.16), transparent 34%),
-    radial-gradient(circle at 80% 20%, rgba(190, 108, 255, 0.14), transparent 28%),
-    linear-gradient(180deg, #08090d 0%, #0b0d12 42%, #090a0f 100%);
+  background: transparent;
 }
 
 .app-shell {
@@ -21,11 +18,11 @@ body {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(47, 125, 125, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(47, 125, 125, 0.05) 1px, transparent 1px);
   background-size: 72px 72px;
   mask-image: radial-gradient(circle at center, black 45%, transparent 92%);
-  opacity: 0.35;
+  opacity: 0.42;
 }
 
 .app-shell__glow {
@@ -33,21 +30,21 @@ body {
   width: 36rem;
   height: 36rem;
   border-radius: 999px;
-  filter: blur(70px);
+  filter: blur(78px);
   pointer-events: none;
-  opacity: 0.55;
+  opacity: 0.32;
 }
 
 .app-shell__glow--one {
   top: -10rem;
   right: -8rem;
-  background: rgba(106, 208, 255, 0.12);
+  background: rgba(112, 191, 191, 0.28);
 }
 
 .app-shell__glow--two {
   bottom: -12rem;
   left: -10rem;
-  background: rgba(165, 122, 255, 0.14);
+  background: rgba(174, 170, 255, 0.24);
 }
 
 .app-shell__content {
@@ -77,14 +74,14 @@ body {
 }
 
 .grid-pattern {
-  background-image: radial-gradient(rgba(153, 247, 255, 0.05) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(47, 125, 125, 0.08) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
 .glass-card {
-  background: rgba(30, 31, 38, 0.4);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(71, 71, 78, 0.15);
+  background: rgba(255, 255, 255, 0.76);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(31, 37, 48, 0.1);
 }
 
 /* Animation utilities */
