@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#f6f3ee" />
     <title>WriteUp - Page not found</title>
+    <meta http-equiv="refresh" content="2; url=./" />
     <style>
       :root {
         color-scheme: light;
@@ -104,6 +105,12 @@
         font-size: 0.92rem;
       }
     </style>
+    <script>
+      (function () {
+        var homeUrl = new URL('./', window.location.href).href;
+        window.__WRITEUP_HOME_URL__ = homeUrl;
+      })();
+    </script>
   </head>
   <body>
     <main class="card">
@@ -114,10 +121,24 @@
         previous page.
       </p>
       <div class="actions">
-        <a class="button button--primary" href="/writeup/">Go to homepage</a>
+        <a class="button button--primary" id="home-link" href="./">Go to homepage</a>
         <a class="button button--secondary" href="javascript:history.back()">Go back</a>
       </div>
-      <div class="status">If you expected this page to load, check the URL for a typo or refresh the homepage.</div>
+      <div class="status">If you expected this page to load, check the URL for a typo. You will be redirected home automatically.</div>
     </main>
+    <script>
+      (function () {
+        var homeUrl = window.__WRITEUP_HOME_URL__ || new URL('./', window.location.href).href;
+        var homeLink = document.getElementById('home-link');
+
+        if (homeLink) {
+          homeLink.setAttribute('href', homeUrl);
+        }
+
+        window.setTimeout(function () {
+          window.location.replace(homeUrl);
+        }, 1000);
+      })();
+    </script>
   </body>
 </html>
